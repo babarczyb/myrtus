@@ -102,7 +102,8 @@ body <- dashboardBody(
                      box(status="primary", solidHeader = TRUE, width = 500,
                          selectInput(inputId ="dara_retreat", label =h4(strong("Daratumumab available in 3L, if used in 1L?"), style = "font-size:18px;"),
                                      choices = list(
-                                       "Yes" = 1, "No" = 0
+                                       "No" = 0,
+                                       "Yes" = 1
                                      ))),
                      
                      
@@ -501,6 +502,18 @@ body <- dashboardBody(
                      
                      # Explanation
                      helpText(h3(strong("Distribution of different treatments at specific points of the treatment algorithm"))),
+                     
+                     
+                     #Box 4.3 (length of dara treatment - select box)
+                     box(status="warning",
+                         solidHeader = TRUE,
+                         collapsible = TRUE,
+                         width = 400,
+                         selectInput(inputId ="dara_length", label =h4(strong("Maximum length of daratumuab treatment in 1L"), style = "font-size:18px;"),
+                                     choices = list(
+                                       "9 months" = 3, "12 months" = 4
+                                     ))),
+                     
                      
                      #Box 4.1 (1L/2L - ASCT: induction, no Dara)
                      box(title=h4(strong("1L/2L, ASCT: induction, with no daratumumab")),
@@ -1264,6 +1277,7 @@ server <- function(input, output, session) {
   
   #vektorokba gyujt?tt inputok
   max_cycles_vector <- c(100, input_final$max_cycles_vector[!is.na(input_final$max_cycles_vector)])
+  max_cycles_vector[2] <- input$dara_length #update by Shiny UI
   p_adverse_tx_vector <- input_final$p_adverse_tx_vector[!is.na(input_final$p_adverse_tx_vector)]
   p_cr_vector <- input_final$p_cr_vector[!is.na(input_final$p_cr_vector)]
   p_vgpr_vector <- input_final$p_vgpr_vector[!is.na(input_final$p_vgpr_vector)]
@@ -2036,6 +2050,7 @@ observeEvent(input$run_dsa,
                  
                  #vektorokba gyujt?tt inputok
                  max_cycles_vector <- c(100, input_final$max_cycles_vector[!is.na(input_final$max_cycles_vector)])
+                 max_cycles_vector[2] <- input$dara_length #update by Shiny UI
                  p_adverse_tx_vector <- input_final$p_adverse_tx_vector[!is.na(input_final$p_adverse_tx_vector)]
                  p_cr_vector <- input_final$p_cr_vector[!is.na(input_final$p_cr_vector)]
                  p_vgpr_vector <- input_final$p_vgpr_vector[!is.na(input_final$p_vgpr_vector)]
@@ -2731,6 +2746,7 @@ observeEvent(input$run_dsa,
                    
                    #vektorokba gyujt?tt inputok
                    max_cycles_vector <- c(100, input_final$max_cycles_vector[!is.na(input_final$max_cycles_vector)])
+                   max_cycles_vector[2] <- input$dara_length #update by Shiny UI
                    p_adverse_tx_vector <- input_final$p_adverse_tx_vector[!is.na(input_final$p_adverse_tx_vector)]
                    p_cr_vector <- input_final$p_cr_vector[!is.na(input_final$p_cr_vector)]
                    p_vgpr_vector <- input_final$p_vgpr_vector[!is.na(input_final$p_vgpr_vector)]
@@ -3163,6 +3179,7 @@ observeEvent(input$run_dsa,
                    
                    #vektorokba gyujt?tt inputok
                    max_cycles_vector <- c(100, input_final$max_cycles_vector[!is.na(input_final$max_cycles_vector)])
+                   max_cycles_vector[2] <- input$dara_length #update by Shiny UI
                    p_adverse_tx_vector <- input_final$p_adverse_tx_vector[!is.na(input_final$p_adverse_tx_vector)]
                    p_cr_vector <- input_final$p_cr_vector[!is.na(input_final$p_cr_vector)]
                    p_vgpr_vector <- input_final$p_vgpr_vector[!is.na(input_final$p_vgpr_vector)]
