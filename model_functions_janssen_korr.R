@@ -79,7 +79,6 @@ treatment <- function (asct_elig, venvd_elig, cytrisk, #baseline patient data
               
               toxic_int <- if (rand_ae_int < p_adverse_tx_vector[treatment_int]){1} else {0} #Adverse Event
               date_adverse_l1_int <- if (toxic_int==1) {i} else {0} #AE cycle number saved out
-              induction <- treatment_int # Induction therpary saved out
             } 
             #Intervention: second/third line daratumumab
             else {
@@ -368,7 +367,9 @@ treatment <- function (asct_elig, venvd_elig, cytrisk, #baseline patient data
         #Patient got Relapse on second line
         else if (prev_line_int==3) {
           #First line was daratumumab, second line was not
-          if (scenario==1 | scenario==2){ 
+          if (scenario==1 | scenario==2){
+            #Dara retreatment is possible
+            if (dara_retr == 1) {
             treatment_int <- if (rand_tx_int<rates_vector[26]) {16} #DPd
             else if (rand_tx_int < rates_vector[26]+rates_vector[27]){14} #DVd
             else if (rand_tx_int < rates_vector[26] + rates_vector[27] + rates_vector[28]) {15} #DKd
@@ -382,6 +383,23 @@ treatment <- function (asct_elig, venvd_elig, cytrisk, #baseline patient data
             
             toxic_int <- if (rand_ae_int < p_adverse_tx_vector[treatment_int]){1} else {0} #Adverse Event
             date_adverse_l3_int <- if (toxic_int==1) {i} else {0} #AE cycle number saved out
+            
+            }
+            #Dara retreatment is not possible: average (dummy) treatment
+            else {
+              treatment_int <- if (venvd_elig==1){9} #VenVd
+              else {22} # dummy
+              
+              tracker_int <- 1
+              cycle_track_int <- 1
+              current_line_int <- 4
+              cost_int <- cost_matrix[tracker_int, treatment_int]
+              l1_tx_int <- l1_tx_int
+              response_int <- 5
+              
+              toxic_int <- if (rand_ae_int < p_adverse_tx_vector[treatment_int]){1} else {0} #Adverse Event
+              date_adverse_l3_int <- if (toxic_int==1) {i} else {0} #AE cycle number saved out
+            }
             
           }
           #3. scenario - Second/third line Dara vs no dara
