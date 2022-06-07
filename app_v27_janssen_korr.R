@@ -1499,7 +1499,7 @@ server <- function(input, output, session) {
                                     date_adverse_l1_int=per_cycle[i,21],date_adverse_2asct_int=per_cycle[i,22],date_adverse_maint_int=per_cycle[i,23],date_adverse_l2_int=per_cycle[i,24],date_adverse_l3_int=per_cycle[i,25],
                                     asct2_int=per_cycle[i,48], asct2_comp=per_cycle[i,49], 
                                     seed_int, seed_comp, 
-                                    max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector)
+                                    max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector, dara_retr)
       
       #translate current_line from treatment to current line used in outcome
       current_line_int <- ifelse (
@@ -2616,7 +2616,7 @@ observeEvent(input$run_dsa,
                                                    date_adverse_l1_int=per_cycle[i,21],date_adverse_2asct_int=per_cycle[i,22],date_adverse_maint_int=per_cycle[i,23],date_adverse_l2_int=per_cycle[i,24],date_adverse_l3_int=per_cycle[i,25],
                                                    asct2_int=per_cycle[i,48], asct2_comp=per_cycle[i,49], 
                                                    seed_int, seed_comp, 
-                                                   max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector)
+                                                   max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector, dara_retr)
                      
                      #translate current_line from treatment to current line used in outcome
                      current_line_int <- if (treatment_vector[4]==1 | treatment_vector[4]==2 |treatment_vector[4]==5) {1} 
@@ -3049,7 +3049,7 @@ observeEvent(input$run_dsa,
                                                      date_adverse_l1_int=per_cycle[i,21],date_adverse_2asct_int=per_cycle[i,22],date_adverse_maint_int=per_cycle[i,23],date_adverse_l2_int=per_cycle[i,24],date_adverse_l3_int=per_cycle[i,25],
                                                      asct2_int=per_cycle[i,48], asct2_comp=per_cycle[i,49], 
                                                      seed_int, seed_comp, 
-                                                     max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector)
+                                                     max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector, dara_retr)
                        
                        #translate current_line from treatment to current line used in outcome
                        current_line_int <- if (treatment_vector[4]==1 | treatment_vector[4]==2 |treatment_vector[4]==5) {1} 
@@ -3480,7 +3480,7 @@ observeEvent(input$run_dsa,
                                                      date_adverse_l1_int=per_cycle[i,21],date_adverse_2asct_int=per_cycle[i,22],date_adverse_maint_int=per_cycle[i,23],date_adverse_l2_int=per_cycle[i,24],date_adverse_l3_int=per_cycle[i,25],
                                                      asct2_int=per_cycle[i,48], asct2_comp=per_cycle[i,49], 
                                                      seed_int, seed_comp, 
-                                                     max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector)
+                                                     max_cycles_vector, cost_matrix, p_adverse_tx_vector, p_cr_vector, p_vgpr_vector, p_pr_vector, p_mr_vector, p_sd_vector, p_pd_vector, maint_better, scenario, dara2l,  rates_vector, dara_retr)
                        
                        #translate current_line from treatment to current line used in outcome
                        current_line_int <- if (treatment_vector[4]==1 | treatment_vector[4]==2 |treatment_vector[4]==5) {1} 
