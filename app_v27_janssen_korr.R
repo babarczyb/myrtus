@@ -2033,7 +2033,7 @@ observeEvent(input$run_dsa,
                
                ##### I.A. Source treatment and outcome functions ###############################
                
-               source(here::here("model_functions.R"))
+               source(here::here("model_functions_janssen_korr.R"))
                
                
                  options(scipen=999)
