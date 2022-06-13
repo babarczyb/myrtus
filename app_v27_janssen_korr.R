@@ -112,8 +112,8 @@ body <- dashboardBody(
                      box(status="primary", solidHeader = TRUE,width = 500,
                          radioButtons(inputId ="scenario", label =h4(strong("Scenario"), style = "font-size:18px;"),
                                       choices = list(
-                                        "1: Daratumumab in 1L & 3L vs. daratumumab only in 2L/3L" = 1,
-                                        "2: Daratumumab in 1L & 3L vs. no daratumumab" = 2,
+                                        "1: Daratumumab in 1L (+ 3L) vs. daratumumab only in 2L/3L" = 1,
+                                        "2: Daratumumab in 1L (+ 3L) vs. no daratumumab" = 2,
                                         "3: Daratumumab only in 2L/3L vs. no daratumuab" = 3))),
                      
                      
@@ -1914,14 +1914,39 @@ server <- function(input, output, session) {
   
   treatment <- NA
   
-  treatment <- if (input$scenario == 1) {
-    c("Daratumumab in 1L & 3L", "Daratumumab only in 2L/3L")
+  treatment <- if (input$scenario == 1) { #scenario 1
+    if (input$dara2l == 1) {
+      if (input$dara_retreat == 1) {
+        c("Daratumumab in 1L & 3L", "Daratumumab only in 2L")
+      }
+      else {
+        c("Daratumumab only in 1L", "Daratumumab only in 2L")
+      }
     }
-    else if (input$scenario == 2) {
-    c("Daratumumab in all 1L & 3L", "No daratumumab")
+      else if (input$dara_retreat == 1) {
+        c("Daratumumab in 1L & 3L", "Daratumumab only in 3L")
+      }
+      else {
+        c("Daratumumab only in 1L", "Daratumumab only in 3L")
     }
-    else {
-    c("Daratumumab only in 2L/3L", "No daratumumab")
+  }
+  
+    else if (input$scenario == 2) { # scenario 2
+        if (input$dara_retreat == 1) {
+          c("Daratumumab in 1L & 3L", "No daratumumab")
+        }
+        else {
+          c("Daratumumab only in 1L", "No daratumumab")
+        }
+    }
+  
+    else { # scenario 3
+      if (input$dara2l == 1) {
+        c("Daratumumab only in 2L", "No daratumumab")
+      }
+      else {
+        c("Daratumumab only in 3L", "No daratumumab")
+      }
     }
   
   life_years <- rbind(LY_int, LY_comp)
