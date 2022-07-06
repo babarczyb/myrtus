@@ -1252,6 +1252,9 @@ server <- function(input, output, session) {
   #when action button "Run model" pressed ...
   observeEvent(input$run_model,
                ignoreNULL = T, {
+                 
+                 
+               
   
   
   ##### I.A. Source treatment and outcome functions ###############################
@@ -2027,6 +2030,9 @@ server <- function(input, output, session) {
    
 
 write.csv2(per_patient, here::here("wd", "per_patient.csv"))
+
+#Reset the session
+reset()
 
 }) #Observe event ends (action button)
   
